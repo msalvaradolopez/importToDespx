@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GpsWebServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGpsWebServices_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="BasicHttpBinding_IGpsWebServices_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_ILandingPageMessage_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:element name="GetReportUserConfig">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportUserConfigResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportUserConfigResult" nillable="true" type="q1:ReportUserConfig" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportUserConfig_v2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportUserConfig_v2Response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportUserConfig_v2Result" nillable="true" type="q2:ReportUserConfig_v2" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportPoint">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fromInclusive" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="toExclusive" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="uin" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportPointResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportPointResult" nillable="true" type="q3:ReportPoint" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="greaterThanId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportMessageResult" nillable="true" type="q4:ReportMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportMessage_v2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="greaterThanId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportMessage_v2Response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportMessage_v2Result" nillable="true" type="q5:ReportMessage_v2" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportLastMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportLastMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportLastMessageResult" nillable="true" type="q6:ReportLastMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportLastMessage_v2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportLastMessage_v2Response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportLastMessage_v2Result" nillable="true" type="q7:ReportLastMessage_v2" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportLastMessage_v3">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportLastMessage_v3Response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportLastMessage_v3Result" nillable="true" type="q8:ReportLastMessage_v3" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportEcuByDateTime">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+            <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="uin" nillable="true" type="q9:ArrayOfstring" />
+            <xs:element minOccurs="0" name="from" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="to" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetReportEcuByDateTimeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" minOccurs="0" name="GetReportEcuByDateTimeResult" nillable="true" type="q10:ReportEcuByDateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Test">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="TestResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOptions">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOptionsResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GpsWebServices.GpsWebServicesClasses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="ReportUserConfig">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="timeZone" type="xs:decimal" />
+              <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="userEnterprise" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportUserConfig" nillable="true" type="tns:ReportUserConfig" />
+      <xs:complexType name="Report">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="tns:Report.Status" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Report" nillable="true" type="tns:Report" />
+      <xs:simpleType name="Report.Status">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Ok" />
+          <xs:enumeration value="NotImplemented" />
+          <xs:enumeration value="UserNameUserPasswordError" />
+          <xs:enumeration value="UsageLimitExceeded" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="Report.Status" nillable="true" type="tns:Report.Status" />
+      <xs:complexType name="ReportUserConfig_v2">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="realtime_arrow_bad_signal" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="realtime_arrow_idle" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="realtime_arrow_movement" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="realtime_arrow_stopped" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="realtime_default_map_type" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="timeZone" type="xs:decimal" />
+              <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="userEnterprise" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportUserConfig_v2" nillable="true" type="tns:ReportUserConfig_v2" />
+      <xs:complexType name="ReportPoint">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rows" nillable="true" type="tns:ArrayOfReportPointRow" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportPoint" nillable="true" type="tns:ReportPoint" />
+      <xs:complexType name="ArrayOfReportPointRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportPointRow" nillable="true" type="tns:ReportPointRow" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfReportPointRow" nillable="true" type="tns:ArrayOfReportPointRow" />
+      <xs:complexType name="ReportPointRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LocalDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PointOfInterestName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SystemDateUtc" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="UnitImei" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UnitName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ReportPointRow" nillable="true" type="tns:ReportPointRow" />
+      <xs:complexType name="ReportMessage">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rows" nillable="true" type="tns:ArrayOfReportMessageRow" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportMessage" nillable="true" type="tns:ReportMessage" />
+      <xs:complexType name="ArrayOfReportMessageRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportMessageRow" nillable="true" type="tns:ReportMessageRow" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfReportMessageRow" nillable="true" type="tns:ArrayOfReportMessageRow" />
+      <xs:complexType name="ReportMessageRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="addressReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="eventType" type="xs:int" />
+          <xs:element minOccurs="0" name="geofenceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="group" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ignition" type="xs:boolean" />
+          <xs:element minOccurs="0" name="imei" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="latitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="longitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="messageId" type="xs:long" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="odometer" type="xs:decimal" />
+          <xs:element minOccurs="0" name="replicationId" type="xs:long" />
+          <xs:element minOccurs="0" name="speed" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank4" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature4" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ReportMessageRow" nillable="true" type="tns:ReportMessageRow" />
+      <xs:complexType name="ReportMessage_v2">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rows" nillable="true" type="tns:ArrayOfReportMessageRow_v2" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportMessage_v2" nillable="true" type="tns:ReportMessage_v2" />
+      <xs:complexType name="ArrayOfReportMessageRow_v2">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportMessageRow_v2" nillable="true" type="tns:ReportMessageRow_v2" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfReportMessageRow_v2" nillable="true" type="tns:ArrayOfReportMessageRow_v2" />
+      <xs:complexType name="ReportMessageRow_v2">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="addressReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="eventType" type="xs:int" />
+          <xs:element minOccurs="0" name="geofenceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="group" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ignition" type="xs:boolean" />
+          <xs:element minOccurs="0" name="imei" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="latitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="longitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="messageId" type="xs:long" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="odometer" type="xs:decimal" />
+          <xs:element minOccurs="0" name="orientation" type="xs:decimal" />
+          <xs:element minOccurs="0" name="replicationId" type="xs:long" />
+          <xs:element minOccurs="0" name="speed" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank4" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature4" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ReportMessageRow_v2" nillable="true" type="tns:ReportMessageRow_v2" />
+      <xs:complexType name="ReportLastMessage">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rows" nillable="true" type="tns:ArrayOfReportLastMessageRow" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportLastMessage" nillable="true" type="tns:ReportLastMessage" />
+      <xs:complexType name="ArrayOfReportLastMessageRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportLastMessageRow" nillable="true" type="tns:ReportLastMessageRow" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfReportLastMessageRow" nillable="true" type="tns:ArrayOfReportLastMessageRow" />
+      <xs:complexType name="ReportLastMessageRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="addressReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="eventType" type="xs:int" />
+          <xs:element minOccurs="0" name="geofenceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="group" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ignition" type="xs:boolean" />
+          <xs:element minOccurs="0" name="imei" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="latitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="longitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="odometer" type="xs:decimal" />
+          <xs:element minOccurs="0" name="speed" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank4" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature4" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ReportLastMessageRow" nillable="true" type="tns:ReportLastMessageRow" />
+      <xs:complexType name="ReportLastMessage_v2">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rows" nillable="true" type="tns:ArrayOfReportLastMessageRow_v2" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportLastMessage_v2" nillable="true" type="tns:ReportLastMessage_v2" />
+      <xs:complexType name="ArrayOfReportLastMessageRow_v2">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportLastMessageRow_v2" nillable="true" type="tns:ReportLastMessageRow_v2" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfReportLastMessageRow_v2" nillable="true" type="tns:ArrayOfReportLastMessageRow_v2" />
+      <xs:complexType name="ReportLastMessageRow_v2">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="addressReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="eventType" type="xs:int" />
+          <xs:element minOccurs="0" name="geofenceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="group" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ignition" type="xs:boolean" />
+          <xs:element minOccurs="0" name="imei" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="latitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="longitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="odometer" type="xs:decimal" />
+          <xs:element minOccurs="0" name="orientation" type="xs:decimal" />
+          <xs:element minOccurs="0" name="speed" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank4" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature4" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ReportLastMessageRow_v2" nillable="true" type="tns:ReportLastMessageRow_v2" />
+      <xs:complexType name="ReportLastMessage_v3">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rows" nillable="true" type="tns:ArrayOfReportLastMessageRow_v3" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportLastMessage_v3" nillable="true" type="tns:ReportLastMessage_v3" />
+      <xs:complexType name="ArrayOfReportLastMessageRow_v3">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportLastMessageRow_v3" nillable="true" type="tns:ReportLastMessageRow_v3" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfReportLastMessageRow_v3" nillable="true" type="tns:ArrayOfReportLastMessageRow_v3" />
+      <xs:complexType name="ReportLastMessageRow_v3">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="addressReference" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="driverName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="driverNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="eventType" type="xs:int" />
+          <xs:element minOccurs="0" name="geofenceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="group" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ignition" type="xs:boolean" />
+          <xs:element minOccurs="0" name="imei" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="latitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="longitude" type="xs:decimal" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="odometer" type="xs:decimal" />
+          <xs:element minOccurs="0" name="orientation" type="xs:decimal" />
+          <xs:element minOccurs="0" name="plates" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="signal" type="xs:boolean" />
+          <xs:element minOccurs="0" name="speed" type="xs:decimal" />
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="state" nillable="true" type="q1:ArrayOfboolean" />
+          <xs:element minOccurs="0" name="tank1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tank4" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature1" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature2" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature3" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="temperature4" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ReportLastMessageRow_v3" nillable="true" type="tns:ReportLastMessageRow_v3" />
+      <xs:complexType name="ReportEcuByDateTime">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Report">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="rows" nillable="true" type="tns:ArrayOfReportEcuByDateTimeRow" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ReportEcuByDateTime" nillable="true" type="tns:ReportEcuByDateTime" />
+      <xs:complexType name="ArrayOfReportEcuByDateTimeRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportEcuByDateTimeRow" nillable="true" type="tns:ReportEcuByDateTimeRow" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfReportEcuByDateTimeRow" nillable="true" type="tns:ArrayOfReportEcuByDateTimeRow" />
+      <xs:complexType name="ReportEcuByDateTimeRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UnitImei" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UnitName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="accelerationHard" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="accelerationMax" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="accelerationMaxDateTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="accelerationModerate" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="breakHard" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="breakMax" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="breakMaxDateTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="breakModerate" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="distance" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="duration" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="durationIdle" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="durationIdlePercent" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="durationPoweredOn" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="endDateTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="fuel" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="fuelAdjustment" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="fuelAdjustmentPercent" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="fuelIdle" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="fuelIdlePercent" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="gpsMaxSpeed" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="maxSpeed" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="rpmGreaterThan1700" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="rpmGreaterThan1800" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="rpmGreaterThan1900" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="rpmGreaterThan2000" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="rpmGreaterThan2100" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="rpmMax" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="rpmMaxDateTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="startDateTime" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ReportEcuByDateTimeRow" nillable="true" type="tns:ReportEcuByDateTimeRow" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfboolean">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfboolean" nillable="true" type="tns:ArrayOfboolean" />
+      <xs:complexType name="ArrayOfstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IGpsWebServices_GetReportUserConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportUserConfig" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportUserConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportUserConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportUserConfig_v2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportUserConfig_v2" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportUserConfig_v2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportUserConfig_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportPoint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportPoint" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportPoint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportPointResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportMessage" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportMessage_v2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportMessage_v2" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportMessage_v2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportMessage_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportLastMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportLastMessage" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportLastMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportLastMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportLastMessage_v2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportLastMessage_v2" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportLastMessage_v2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportLastMessage_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportLastMessage_v3_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportLastMessage_v3" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportLastMessage_v3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportLastMessage_v3Response" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportEcuByDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportEcuByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetReportEcuByDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReportEcuByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_Test_InputMessage">
+    <wsdl:part name="parameters" element="tns:Test" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_Test_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetOptions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptions" />
+  </wsdl:message>
+  <wsdl:message name="IGpsWebServices_GetOptions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptionsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGpsWebServices">
+    <wsdl:operation name="GetReportUserConfig">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportUserConfig" message="tns:IGpsWebServices_GetReportUserConfig_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportUserConfigResponse" message="tns:IGpsWebServices_GetReportUserConfig_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportUserConfig_v2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportUserConfig_v2" message="tns:IGpsWebServices_GetReportUserConfig_v2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportUserConfig_v2Response" message="tns:IGpsWebServices_GetReportUserConfig_v2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportPoint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportPoint" message="tns:IGpsWebServices_GetReportPoint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportPointResponse" message="tns:IGpsWebServices_GetReportPoint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportMessage" message="tns:IGpsWebServices_GetReportMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportMessageResponse" message="tns:IGpsWebServices_GetReportMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportMessage_v2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportMessage_v2" message="tns:IGpsWebServices_GetReportMessage_v2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportMessage_v2Response" message="tns:IGpsWebServices_GetReportMessage_v2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportLastMessage" message="tns:IGpsWebServices_GetReportLastMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportLastMessageResponse" message="tns:IGpsWebServices_GetReportLastMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage_v2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v2" message="tns:IGpsWebServices_GetReportLastMessage_v2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v2Response" message="tns:IGpsWebServices_GetReportLastMessage_v2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage_v3">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v3" message="tns:IGpsWebServices_GetReportLastMessage_v3_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v3Response" message="tns:IGpsWebServices_GetReportLastMessage_v3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportEcuByDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportEcuByDateTime" message="tns:IGpsWebServices_GetReportEcuByDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetReportEcuByDateTimeResponse" message="tns:IGpsWebServices_GetReportEcuByDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/Test" message="tns:IGpsWebServices_Test_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/TestResponse" message="tns:IGpsWebServices_Test_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOptions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGpsWebServices/GetOptions" message="tns:IGpsWebServices_GetOptions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGpsWebServices/GetOptionsResponse" message="tns:IGpsWebServices_GetOptions_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ILandingPageMessage" />
+  <wsdl:binding name="WSHttpBinding_IGpsWebServices" type="tns:IGpsWebServices">
+    <wsp:PolicyReference URI="#WSHttpBinding_IGpsWebServices_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReportUserConfig">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportUserConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportUserConfig_v2">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportUserConfig_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportPoint">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportPoint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportMessage">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportMessage_v2">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportMessage_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportLastMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage_v2">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage_v3">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportEcuByDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportEcuByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/Test" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptions">
+      <soap12:operation soapAction="http://tempuri.org/IGpsWebServices/GetOptions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IGpsWebServices" type="tns:IGpsWebServices">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IGpsWebServices_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReportUserConfig">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportUserConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportUserConfig_v2">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportUserConfig_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportPoint">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportPoint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportMessage">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportMessage_v2">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportMessage_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportLastMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage_v2">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportLastMessage_v3">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportLastMessage_v3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportEcuByDateTime">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetReportEcuByDateTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptions">
+      <soap:operation soapAction="http://tempuri.org/IGpsWebServices/GetOptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_ILandingPageMessage" type="tns:ILandingPageMessage">
+    <wsp:PolicyReference URI="#CustomBinding_ILandingPageMessage_policy" />
+  </wsdl:binding>
+  <wsdl:service name="GpsWebServices">
+    <wsdl:port name="WSHttpBinding_IGpsWebServices" binding="tns:WSHttpBinding_IGpsWebServices">
+      <soap12:address location="https://67.219.149.214:9003/ws" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://67.219.149.214:9003/ws</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IGpsWebServices" binding="tns:BasicHttpBinding_IGpsWebServices">
+      <soap:address location="https://67.219.149.214:9003/basic" />
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_ILandingPageMessage" binding="tns:CustomBinding_ILandingPageMessage" />
+  </wsdl:service>
+</wsdl:definitions>
